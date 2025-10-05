@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>BaySulu — Monthly Rentals UAE (Demo)</title>
+  <!-- Tailwind via CDN (без сборки) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    /* Бренд‑цвет */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: "#16543C" }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Небольшие улучшения */
+    .nav-link{padding:0.25rem 0.5rem;border-radius:0.5rem}
+    .nav-link.active{background:#16543C;color:#fff}
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+  <!-- ======= ШАПКА ======= -->
+  <header class="w-full border-b bg-white/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-xl font-extrabold text-primary">BaySulu</span>
+        <span class="text-xs text-gray-500">Demo</span>
+      </div>
+      <nav class="flex items-center gap-2">
+        <button class="nav-link" data-nav="home"    id="nav-home">Home</button>
+        <button class="nav-link" data-nav="tenant"  id="nav-tenant">Tenant</button>
+        <button class="nav-link" data-nav="landlord"id="nav-landlord">Landlord</button>
+        <button class="nav-link" data-nav="agent"   id="nav-agent">Agent</button>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="lang-en" class="px-2 py-1 border rounded">EN</button>
+        <button id="lang-ar" class="px-2 py-1 border rounded">AR</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======= КОНТЕНТ ======= -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- ============ HOME ============ -->
+    <section id="section-home" class="space-y-8">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-extrabold leading-tight" data-i18n="hero_title">
+            Monthly rentals in Abu Dhabi & UAE
+          </h1>
+          <p class="mt-3 text-gray-600" data-i18n="hero_sub">
+            Pay monthly instead of 4–6 cheques. Mobile‑first UX. (Demo)
+          </p>
+          <div class="mt-5 flex gap-3">
+            <a href="#listings" class="px-5 py-3 rounded-2xl bg-primary text-white" data-i18n="btn_browse">
+              Browse listings
+            </a>
+            <a href="#agents" class="px-5 py-3 rounded-2xl border" data-i18n="btn_agents">
+              For agents
+            </a>
+          </div>
+          <div class="mt-4 text-sm text-gray-600">
+            <span class="font-semibold">Note:</span>
+            This is a static demo (no payments).
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow">
+          <img alt="Abu Dhabi" class="w-full h-64 object-cover"
+               src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop">
+        </div>
+      </div>
+
+      <!-- Листинги (демо) -->
+      <section id="listings">
+        <h2 class="text-2xl font-bold mb-4" data-i18n="listings_title">Featured listings</h2>
+        <div id="listings-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+
+      <!-- Блок для агентов -->
+      <section id="agents" class="p-6 border rounded-2xl">
+        <h2 class="text-2xl font-bold" style="color:#16543C" data-i18n="agents_title">For Agents</h2>
+        <p class="mt-1" data-i18n="agents_lead">Close more deals, faster, and earn commissions.</p>
+        <ul class="list-disc pl-6 mt-2 text-gray-700">
+          <li data-i18n="agents_commission">Commission: AED 1,200–2,000 per deal</li>
+          <li data-i18n="agents_tools">Agent dashboard + WhatsApp integration</li>
+          <li data-i18n="agents_support">Training and support</li>
+        </ul>
+        <div class="mt-4 flex gap-3 flex-wrap">
+          <button data-nav="agent" class="px-4 py-2 bg-primary text-white rounded" data-i18n="agents_login">
+            Agent sign‑in
+          </button>
+          <a id="wa-link" target="_blank" rel="noreferrer"
+             class="px-4 py-2 border rounded">WhatsApp</a>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ TENANT ============ -->
+    <section id="section-tenant" class="hidden">
+      <h1 class="text-2xl font-bold mb-4" data-i18n="tenant_h1">Tenant Dashboard</h1>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="p-5 border rounded-2xl">
+          <h3 class="font-semibold mb-2" data-i18n="profile">Profile</h3>
+          <p><span data-i18n="name">Name</span>: John Doe</p>
+          <p><span data-i18n="phone">Phone</span>: +971 50 000 0000</p>
+          <p><span data-i18n="email">Email</span>: john@example.com</p>
+        </div>
+        <div class="p-5 border rounded-2xl">
+          <h3 class="font-semibold mb-2" data-i18n="rentals">Active rentals</h3>
+          <p>1 × 1BR — Al Reem Island (AED 5,500/mo)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LANDLORD ============ -->
+    <section id="section-landlord" class="hidden">
+      <h1 class="text-2xl font-bold mb-4" data-i18n="landlord_h1">Landlord Dashboard</h1>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="p-5 border rounded-2xl">
+          <h3 class="font-semibold mb-2" data-i18n="my_properties">My properties</h3>
+          <ul class="list-disc pl-6">
+            <li>2BR — Saadiyat (AED 9,500/mo)</li>
+            <li>Studio — Al Raha Beach (AED 3,800/mo)</li>
+          </ul>
+        </div>
+        <div class="p-5 border rounded-2xl">
+          <h3 class="font-semibold mb-2" data-i18n="commission">Platform commission</h3>
+          <p id="landlord-commission-text">~4–5% (demo)</p>
+          <p class="text-sm text-gray-600 mt-2" data-i18n="note_demo">
+            Demo only. Real payouts & KYC are disabled.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AGENT ============ -->
+    <section id="section-agent" class="hidden">
+      <h1 class="text-2xl font-bold mb-4" data-i18n="agent_h1">Agent Dashboard</h1>
+
+      <!-- Статистика -->
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="p-4 border rounded-2xl">
+          <div class="text-gray-500 text-sm" data-i18n="stats_listings">My listings</div>
+          <div id="stat-mylistings" class="text-2xl font-bold">0</div>
+        </div>
+        <div class="p-4 border rounded-2xl">
+          <div class="text-gray-500 text-sm" data-i18n="stats_views">Total views</div>
+          <div id="stat-views" class="text-2xl font-bold">0</div>
+        </div>
+        <div class="p-4 border rounded-2xl">
+          <div class="text-gray-500 text-sm" data-i18n="stats_comm">Est. commission</div>
+          <div id="stat-commission" class="text-2xl font-bold">AED 0</div>
+          <div class="text-sm text-gray-500" id="agent-commission-note"></div>
+        </div>
+      </div>
+
+      <!-- Форма добавления -->
+      <div class="p-5 border rounded-2xl mb-6">
+        <h3 class="font-semibold mb-2" data-i18n="add_listing">Add Listing (demo)</h3>
+        <p class="text-sm text-gray-600" data-i18n="add_listing_note">
+          This form saves to your browser only (LocalStorage).
+        </p>
+        <form id="agent-form" class="grid md:grid-cols-3 gap-3 mt-3">
+          <input id="f-address" class="border p-2 rounded" data-i18n-placeholder="ph_address" placeholder="Address" required>
+          <input id="f-price" type="number" class="border p-2 rounded" data-i18n-placeholder="ph_price" placeholder="Price (AED)" required>
+          <button class="px-4 py-2 bg-primary text-white rounded" data-i18n="btn_add">Add</button>
+        </form>
+      </div>
+
+      <!-- Список объектов агента -->
+      <div class="p-5 border rounded-2xl">
+        <h3 class="font-semibold mb-3" data-i18n="my_listings">My listings</h3>
+        <div id="agent-listings" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <div id="agent-empty" class="text-gray-500" data-i18n="no_listings">No listings yet</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* ======================
+       БЫСТРЫЕ НАСТРОЙКИ
+    ====================== */
+    const WHATSAPP_NUMBER = "971000000000"; // только цифры, без +
+    const AGENT_COMMISSION_TEXT = "AED 1,200–2,000 per deal"; // текст диапазона комиссии агента
+    const PLATFORM_COMMISSION_TEXT = "~4–5% (demo)";          // комиссия платформы (для landlord)
+
+    /* ====== I18N словарь ====== */
+    const I18N = {
+      en: {
+        hero_title: "Monthly rentals in Abu Dhabi & UAE",
+        hero_sub: "Pay monthly instead of 4–6 cheques. Mobile‑first UX. (Demo)",
+        btn_browse: "Browse listings",
+        btn_agents: "For agents",
+        listings_title: "Featured listings",
+        agents_title: "For Agents",
+        agents_lead: "Close more deals, faster, and earn commissions.",
+        agents_commission: "Commission: " + AGENT_COMMISSION_TEXT,
+        agents_tools: "Agent dashboard + WhatsApp integration",
+        agents_support: "Training and support",
+        agents_login: "Agent sign‑in",
+        profile: "Profile",
+        name: "Name",
+        phone: "Phone",
+        email: "Email",
+        rentals: "Active rentals",
+        landlord_h1: "Landlord Dashboard",
+        my_properties: "My properties",
+        commission: "Platform commission",
+        note_demo: "Demo only. Real payouts & KYC are disabled.",
+        tenant_h1: "Tenant Dashboard",
+        agent_h1: "Agent Dashboard",
+        stats_listings: "My listings",
+        stats_views: "Total views",
+        stats_comm: "Est. commission",
+        add_listing: "Add Listing (demo)",
+        add_listing_note: "This form saves to your browser only (LocalStorage).",
+        ph_address: "Address",
+        ph_price: "Price (AED)",
+        btn_add: "Add",
+        my_listings: "My listings",
+        no_listings: "No listings yet"
+      },
+      ar: {
+        hero_title: "دفعات إيجار شهرية في أبوظبي والإمارات",
+        hero_sub: "ادفع شهريًا بدلًا من 4–6 شيكات. تجربة جوال أولًا. (تجريبي)",
+        btn_browse: "تصفح العقارات",
+        btn_agents: "للوكلاء",
+        listings_title: "عقارات مميزة",
+        agents_title: "للوكلاء",
+        agents_lead: "أغلق المزيد من الصفقات بسرعة واحصل على عمولات.",
+        agents_commission: "العمولة: " + AGENT_COMMISSION_TEXT.replace("AED","درهم"),
+        agents_tools: "لوحة الوكيل + تكامل واتساب",
+        agents_support: "التدريب والدعم",
+        agents_login: "دخول الوكيل",
+        profile: "الملف الشخصي",
+        name: "الاسم",
+        phone: "الهاتف",
+        email: "البريد الإلكتروني",
+        rentals: "الإيجارات النشطة",
+        landlord_h1: "لوحة المؤجر",
+        my_properties: "عقاراتي",
+        commission: "عمولة المنصة",
+        note_demo: "نسخة تجريبية فقط. التحويلات الحقيقية والتحقق غير مفعّلة.",
+        tenant_h1: "لوحة المستأجر",
+        agent_h1: "لوحة الوكيل",
+        stats_listings: "عقاراتي",
+        stats_views: "إجمالي المشاهدات",
+        stats_comm: "العمولة المتوقعة",
+        add_listing: "إضافة عقار (تجريبي)",
+        add_listing_note: "يتم الحفظ محليًا في المتصفح فقط.",
+        ph_address: "العنوان",
+        ph_price: "السعر (درهم)",
+        btn_add: "إضافة",
+        my_listings: "عقاراتي",
+        no_listings: "لا توجد عقارات بعد"
+      }
+    };
+
+    /* ====== Демо‑листинги ====== */
+    const LISTINGS_EN = [
+      { id: 1, title: "1BR — Al Reem Island",  location: "Abu Dhabi", price: "AED 5,500/mo",
+        img: "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop" },
+      { id: 2, title: "Studio — Al Raha Beach", location: "Abu Dhabi", price: "AED 3,800/mo",
+        img: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop" },
+      { id: 3, title: "3BR — Khalifa City A",   location: "Abu Dhabi", price: "AED 9,500/mo",
+        img: "https://images.unsplash.com/photo-1459535653751-d571815e906b?q=80&w=1200&auto=format&fit=crop" }
+    ];
+    const LISTINGS_AR = [
+      { id: 1, title: "غرفة نوم — جزيرة الريم", location: "أبوظبي", price: "5,500 درهم/شهر",
+        img: "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop" },
+      { id: 2, title: "استوديو — شاطئ الراحة",  location: "أبوظبي", price: "3,800 درهم/شهر",
+        img: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop" },
+      { id: 3, title: "٣ غرف — خليفة سيتي A",   location: "أبوظبي", price: "9,500 درهم/شهر",
+        img: "https://images.unsplash.com/photo-1459535653751-d571815e906b?q=80&w=1200&auto=format&fit=crop" }
+    ];
+
+    /* ====== Состояние ====== */
+    const state = {
+      locale: localStorage.getItem("bs_locale") || "en",
+      section: "home",
+      agentListings: JSON.parse(localStorage.getItem("bs_agent_listings") || "[]"),
+      baseViews: 25  // базовые условные просмотры для демо
+    };
+
+    /* ====== Утилиты ====== */
+    function $(sel){ return document.querySelector(sel); }
+    function $all(sel){ return Array.from(document.querySelectorAll(sel)); }
+    function setLocale(loc){
+      state.locale = loc;
+      localStorage.setItem("bs_locale", loc);
+      document.documentElement.lang = loc;
+      document.documentElement.dir = (loc === "ar" ? "rtl" : "ltr");
+      applyI18n();
+      renderListings();
+      highlightLang();
+    }
+    function switchSection(sec){
+      state.section = sec;
+      ["home","tenant","landlord","agent"].forEach(s => {
+        $("#section-"+s).classList.toggle("hidden", s!==sec);
+        $("#nav-"+s).classList.toggle("active", s===sec);
+      });
+      if(sec==="agent"){ renderAgent(); }
+      if(sec==="landlord"){ $("#landlord-commission-text").textContent = PLATFORM_COMMISSION_TEXT; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    function applyI18n(){
+      const dict = I18N[state.locale];
+      $all("[data-i18n]").forEach(el => {
+        const k = el.getAttribute("data-i18n");
+        if(dict[k]) el.textContent = dict[k];
+      });
+      $all("[data-i18n-placeholder]").forEach(el=>{
+        const k = el.getAttribute("data-i18n-placeholder");
+        if(dict[k]) el.setAttribute("placeholder", dict[k]);
+      });
+      // Обновим подпись WhatsApp + ссылку
+      const wa = $("#wa-link");
+      const text = state.locale==='ar'
+        ? "التواصل عبر واتساب"
+        : "WhatsApp";
+      wa.textContent = text;
+      wa.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi BaySulu! I want to join as an Agent.')}`;
+      // Агентская приписка
+      $("#agent-commission-note").textContent = state.locale==='ar'
+        ? "النطاق إرشادي لأغراض العرض."
+        : "Range is indicative for demo purposes.";
+    }
+    function highlightLang(){
+      $("#lang-en").classList.toggle("font-bold", state.locale==='en');
+      $("#lang-ar").classList.toggle("font-bold", state.locale==='ar');
+    }
+
+    /* ====== Рендер листингов (Home) ====== */
+    function renderListings(){
+      const grid = $("#listings-grid");
+      const arr = (state.locale==='ar') ? LISTINGS_AR : LISTINGS_EN;
+      grid.innerHTML = arr.map(it => `
+        <div class="border rounded-2xl overflow-hidden shadow-sm">
+          <img src="${it.img}" alt="${it.title}" class="w-full h-40 object-cover">
+          <div class="p-4">
+            <h3 class="font-semibold">${it.title}</h3>
+            <p class="text-gray-600">${it.location}</p>
+            <p class="text-primary font-bold">${it.price}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    /* ====== Агент: рендер и логика ====== */
+    function renderAgent(){
+      // статы
+      const listings = state.agentListings;
+      $("#stat-mylistings").textContent = listings.length;
+      const views = listings.reduce((s,_)=>s+state.baseViews, 0);
+      $("#stat-views").textContent = views;
+      // грубая оценка комиссии
+      const approx = listings.length * 1200; // нижняя граница диапазона
+      $("#stat-commission").textContent = `AED ${approx.toLocaleString()}`;
+      // список
+      const wrap = $("#agent-listings");
+      const empty = $("#agent-empty");
+      if(!listings.length){
+        wrap.innerHTML = "";
+        empty.classList.remove("hidden");
+      } else {
+        empty.classList.add("hidden");
+        wrap.innerHTML = listings.map(it => `
+          <div class="border rounded-2xl p-4">
+            <div class="text-sm text-gray-500 mb-1">${it.address}</div>
+            <div class="font-semibold">AED ${Number(it.price).toLocaleString()}</div>
+            <div class="text-xs text-gray-500 mt-1">
+              Added by agent • Views: ${state.baseViews}
+            </div>
+          </div>
+        `).join("");
+      }
+    }
+    function onAgentSubmit(e){
+      e.preventDefault();
+      const address = $("#f-address").value.trim();
+      const price = $("#f-price").value.trim();
+      if(!address || !price){ return; }
+      state.agentListings.push({ address, price });
+      localStorage.setItem("bs_agent_listings", JSON.stringify(state.agentListings));
+      $("#f-address").value = "";
+      $("#f-price").value = "";
+      renderAgent();
+    }
+
+    /* ====== Навигация, язык ====== */
+    document.addEventListener("click", (e)=>{
+      const nav = e.target.closest("[data-nav]");
+      if(nav){
+        switchSection(nav.getAttribute("data-nav"));
+      }
+    });
+    $("#lang-en").addEventListener("click", ()=> setLocale("en"));
+    $("#lang-ar").addEventListener("click", ()=> setLocale("ar"));
+    $("#agent-form").addEventListener("submit", onAgentSubmit);
+
+    /* ====== Инициализация ====== */
+    (function init(){
+      setLocale(state.locale);
+      switchSection("home");
+      renderListings();
+    })();
+  </script>
+</body>
+</html>
