@@ -375,3 +375,6 @@ $('#agent-form').addEventListener('submit',onAgentSubmit);
 </script>
 </body>
 </html>
+import dynamic from "next/dynamic";
+const PayMonthlyButton = dynamic(() => import("../components/PayMonthlyButton"), { ssr: false });
+``
