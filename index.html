@@ -193,6 +193,60 @@
   <div>© BaySulu — Fintech platform for flexible rent payments in the UAE.</div>
   <div>Contact: +971 55 432 8064 · baysulufintech@gmail.com</div>
 </footer>
+<style>
+  .bs-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.2rem;border:1px solid #d1d5db;border-radius:12px;background:#fff;color:#111;cursor:pointer}
+  .bs-btn:hover{background:#f8fafc}
+  #bs-toggle{position:absolute;left:-9999px}
+  .bs-modal{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;place-items:center;padding:16px;z-index:9999}
+  #bs-toggle:checked ~ .bs-modal{display:grid}
+  .bs-card{background:#fff;border-radius:16px;padding:20px;max-width:560px;width:100%;border:1px solid #e5e7eb}
+  .bs-input{width:100%;padding:.7rem .9rem;border:1px solid #d1d5db;border-radius:10px;margin:.4rem 0}
+  .bs-cta{background:#059669;color:#fff;border:none;border-radius:12px;padding:.8rem 1rem;cursor:pointer}
+  .bs-close{cursor:pointer;color:#64748b}
+  .bs-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+</style>
+
+<!-- Кнопка -->
+<input type="checkbox" id="bs-toggle">
+<label for="bs-toggle" class="bs-btn">
+  <span style="font-weight:600">Pay monthly with</span>
+  <span style="display:inline-flex;align-items:center;gap:.3rem">
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+      <circle cx="12" cy="12" r="10" fill="#D1FAE5"></circle>
+      <path d="M12 5c2.5 0 3.5 1.8 3.5 3.2S14.5 12 12 12 8.5 10.2 8.5 8.2 9.5 5 12 5Z" fill="#059669"></path>
+      <path d="M12 19c2.5 0 3.5-1.8 3.5-3.2S14.5 12 12 12 8.5 13.8 8.5 15.8 9.5 19 12 19Z" fill="#059669"></path>
+      <circle cx="12" cy="12" r="1.5" fill="#FBBF24"></circle>
+    </svg>
+    <b>BaySulu</b>
+  </span>
+</label>
+
+<!-- Модалка -->
+<div class="bs-modal">
+  <div class="bs-card" onclick="event.stopPropagation()">
+    <div class="bs-row">
+      <div>
+        <div style="font-size:18px;font-weight:700">Apply — Pay Monthly</div>
+        <div style="font-size:12px;color:#64748b;margin-top:4px">
+          Estimated: <b>AED 7,500 / mo × 12</b>
+        </div>
+      </div>
+      <label for="bs-toggle" class="bs-close">✕</label>
+    </div>
+
+    <form style="margin-top:12px;display:grid;gap:8px"
+          action="https://formsubmit.co/baysulufintech@gmail.com" method="POST">
+      <input class="bs-input" name="full_name" placeholder="Full name" required>
+      <input class="bs-input" name="email" type="email" placeholder="Email" required>
+      <input class="bs-input" name="phone" placeholder="Phone (UAE)" required>
+      <input class="bs-input" name="property" placeholder="Property / Listing URL">
+      <input class="bs-input" name="annual_rent_aed" value="90000">
+      <button class="bs-cta">Submit</button>
+      <input type="hidden" name="_subject" value="BaySulu — New Pay Monthly Application">
+      <input type="hidden" name="_captcha" value="false">
+    </form>
+  </div>
+</div>
 
 </body>
 </html>
