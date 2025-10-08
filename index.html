@@ -1,1 +1,357 @@
+<!doctype html>
+<html lang="en" data-theme="auto" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BaySulu — Revolutionised Rent Payments</title>
+<meta name="description" content="Pay monthly with BaySulu. Landlords get annual upfront. XYD Bank · Insurance · Local low compliance">
+
+<style>
+  /* THEME */
+  :root{
+    --brand:#059669; --brand-600:#047857; --accent:#fbbf24;
+    --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0;
+    --card:#ffffff; --shadow:0 2px 8px rgba(0,0,0,.04); --radius:18px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1220; --ink:#e6e9ef; --muted:#9aa3b2; --line:#1f2937;
+      --card:#0f172a; --shadow:0 2px 8px rgba(0,0,0,.35);
+    }
+  }
+  html[data-theme="light"]{
+    --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --card:#ffffff; --shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  html[data-theme="dark"]{
+    --bg:#0b1220; --ink:#e6e9ef; --muted:#9aa3b2; --line:#1f2937; --card:#0f172a; --shadow:0 2px 8px rgba(0,0,0,.35);
+  }
+
+  /* BASE */
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  h1,h2,h3{margin:0 0 .3em;font-weight:700}
+  p{margin:.5em 0}
+  a{color:var(--brand);text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  .topbar{position:sticky;top:0;z-index:999;background:var(--bg);border-bottom:1px solid var(--line)}
+  .topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;max-width:1100px;margin:0 auto;padding:10px 24px}
+  .hero{padding:40px 0;border-bottom:1px solid var(--line)}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:12px;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0}
+  html[data-theme="dark"] .badge{color:#b8f7d8;background:#042d23;border-color:#0f5138}
+  .h1{font-size:38px;line-height:1.2}
+  .lead{color:var(--muted);font-size:18px;max-width:680px}
+  .btn{display:inline-block;padding:12px 20px;border-radius:var(--radius);border:1px solid var(--brand);background:var(--brand);color:#fff;font-weight:600;text-align:center}
+  .btn:hover{background:var(--brand-600)}
+  .btn.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.sec:hover{background:rgba(255,255,255,.05)}
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+  .muted{color:var(--muted)} .small{font-size:14px}
+  .img{background:linear-gradient(135deg,#f1f5f9,#e2e8f0);height:220px;display:grid;place-items:center;color:var(--muted);border-radius:var(--radius)}
+  html[data-theme="dark"] .img{background:linear-gradient(135deg,#0f172a,#111827)}
+  form{display:grid;gap:10px}
+  input,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:transparent;color:var(--ink)}
+  input::placeholder{color:var(--muted)}
+  button{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:12px;font-weight:600;cursor:pointer}
+  button:hover{background:var(--brand-600)}
+  .logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
+  .logo{height:60px;border:1px solid var(--line);border-radius:var(--radius);display:grid;place-items:center;background:var(--card);color:#cbd5e1;font-weight:600}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;background:transparent;color:var(--ink)}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:24px;color:var(--muted);font-size:14px;text-align:center}
+  @media(max-width:700px){.h1{font-size:30px}}
+
+  /* Controls */
+  .controls{display:flex;gap:8px;align-items:center}
+  .control{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 12px;font-size:13px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- Topbar: theme & language -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div style="font-weight:800">BaySulu</div>
+    <div class="controls">
+      <button class="control" id="themeToggle" aria-label="Toggle theme">🌙 Theme</button>
+      <button class="control" id="langToggle" aria-label="Toggle language">AR / EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero wrap">
+  <div class="badge" data-i="badge">
+    <span style="width:8px;height:8px;border-radius:50%;background:#059669"></span> Revolutionised rent payments
+  </div>
+  <h1 class="h1" data-i="h1">Pay rent <span style="color:#059669">monthly</span>. Landlords get <span style="color:#059669">annual</span> upfront.</h1>
+  <p class="lead" data-i="lead">
+    BaySulu is a UAE fintech platform that turns annual cheques into smooth monthly installments — secured by banking rails and insurance. Powered by GPT-5 Pro · Video by Sora-2 · Local low compliance ready.
+  </p>
+  <p style="margin-top:24px">
+    <a href="#apply" class="btn" data-i="ctaApply">Start application</a>
+    <a href="#video" class="btn sec" data-i="ctaDemo">See demo</a>
+    <span class="pill">XYD Bank</span>
+    <span class="pill" data-i="pillInsurance">Insurance</span>
+  </p>
+</section>
+
+<!-- How it works -->
+<section class="wrap" id="how">
+  <h2 data-i="howTitle">How BaySulu works</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3 data-i="how1t">1. Apply in minutes</h3>
+      <p class="small muted" data-i="how1d">Digital onboarding & KYC. Pre-check with XYD Bank API.</p>
+    </div>
+    <div class="card">
+      <h3 data-i="how2t">2. Landlord paid upfront</h3>
+      <p class="small muted" data-i="how2d">XYD Bank disburses full annual rent at contract start.</p>
+    </div>
+    <div class="card">
+      <h3 data-i="how3t">3. Pay monthly</h3>
+      <p class="small muted" data-i="how3d">12 installments. Insurance coverage for default and deposit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GPT-5 Pro demo -->
+<section class="wrap" id="ai">
+  <h2 data-i="aiTitle">Your AI rent assistant (GPT-5 Pro)</h2>
+  <div class="card small">
+    <p class="muted" data-i="aiDemo">Demo conversation</p>
+    <p><b data-i="you">You:</b> <span data-i="q1">Annual is AED 90,000. How much monthly?</span></p>
+    <p style="color:#059669"><b>BaySulu AI:</b> <span id="est1" data-i="a1">Estimated AED 7,500 / month × 12. Would you like a breakdown?</span></p>
+    <p><b data-i="you">You:</b> <span data-i="q2">Draft an email to the broker.</span></p>
+    <p style="color:#059669"><b>BaySulu AI:</b> <span data-i="a2">Subject: Monthly Plan for Shield Tower… (draft attached).</span></p>
+  </div>
+</section>
+
+<!-- Sora-2 video -->
+<section class="wrap" id="video">
+  <h2 data-i="videoTitle">Explain with video (Sora-2)</h2>
+  <div class="card">
+    <div class="img"><video controls poster="" style="width:100%;border-radius:12px;background:#000">
+      <!-- Replace src with your mp4 later -->
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video></div>
+    <p class="small muted" data-i="videoNote">“How BaySulu works” — 0:30 demo video.</p>
+  </div>
+</section>
+
+<!-- Apply + Calculator -->
+<section class="wrap" id="apply">
+  <h2 data-i="applyTitle">Apply — Pay Monthly with BaySulu</h2>
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="margin-bottom:6px" data-i="calcTitle">Monthly Payment Estimator</h3>
+    <div class="small muted" data-i="calcDesc">Enter your annual rent (AED). We estimate a monthly plan (rounded nicely).</div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-top:10px">
+      <input id="annualInput" name="annual_rent_aed_calc" type="number" min="12000" step="100" value="90000" placeholder="Annual Rent (AED)">
+      <div class="card" style="display:grid;place-items:center;padding:10px">
+        <div class="small" data-i="estLabel">Estimated</div>
+        <div style="font-weight:800" id="est2">AED 7,500 / month × 12</div>
+      </div>
+    </div>
+  </div>
+
+  <form action="https://formsubmit.co/baysulufintech@gmail.com" method="POST" class="card">
+    <div class="grid-3" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <input name="full_name" placeholder="Full name" required data-i-ph="phName">
+      <input name="email" type="email" placeholder="Email" required data-i-ph="phEmail">
+      <input name="phone" placeholder="Phone (UAE)" required data-i-ph="phPhone">
+      <input name="property" placeholder="Property / Listing URL" data-i-ph="phProp">
+      <input id="annualForm" name="annual_rent_aed" placeholder="Annual Rent (AED)" value="90000" data-i-ph="phAnnual">
+    </div>
+    <button style="margin-top:8px" data-i="btnSubmit">Submit Application</button>
+    <input type="hidden" name="_subject" value="BaySulu — New Pay Monthly Application">
+    <input type="hidden" name="_captcha" value="false">
+  </form>
+
+  <p class="small muted" style="margin-top:6px" data-i="legalNote">By submitting you agree to Local low compliance & privacy terms.</p>
+</section>
+
+<!-- Partners -->
+<section class="wrap" id="partners">
+  <h2 data-i="partnersTitle">Trusted ecosystem</h2>
+  <p class="small muted" data-i="partnersDesc">Seamless rails with bank & insurance. Listing lead-flow from marketplaces.</p>
+  <div class="logos">
+    <div class="logo">Bayut</div>
+    <div class="logo">XYD Bank</div>
+    <div class="logo" data-i="logoIns">Insurance</div>
+    <div class="logo" data-i="logoReg">Local low compliance</div>
+  </div>
+</section>
+
+<!-- Contact / footer -->
+<footer>
+  <div>📞 +971 55 432 8064   ·   ✉️ baysulufintech@gmail.com</div>
+  <div data-i="copyright">© BaySulu — Fintech platform for flexible rent payments in the UAE.</div>
+</footer>
+
+<script>
+  // --- Theme toggle ---
+  (function(){
+    const el = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('bay_theme');
+    if(saved){ el.setAttribute('data-theme', saved); btn.textContent = (saved==='dark'?'🌞':saved==='light'?'🌓':'🌙') + ' Theme'; }
+    function cycle(){
+      const cur = el.getAttribute('data-theme') || 'auto';
+      const nxt = cur==='auto' ? 'dark' : cur==='dark' ? 'light' : 'auto';
+      el.setAttribute('data-theme', nxt);
+      btn.textContent = (nxt==='dark'?'🌞':nxt==='light'?'🌓':'🌙') + ' Theme';
+      localStorage.setItem('bay_theme', nxt);
+    }
+    btn.addEventListener('click', cycle);
+  })();
+
+  // --- i18n EN/AR with RTL switch ---
+  (function(){
+    const el = document.documentElement;
+    const btn = document.getElementById('langToggle');
+    const T = {
+      en: {
+        badge: "Revolutionised rent payments",
+        h1: "Pay rent <span style=\"color:#059669\">monthly</span>. Landlords get <span style=\"color:#059669\">annual</span> upfront.",
+        lead: "BaySulu is a UAE fintech platform that turns annual cheques into smooth monthly installments — secured by banking rails and insurance. Powered by GPT-5 Pro · Video by Sora-2 · Local low compliance ready.",
+        ctaApply: "Start application",
+        ctaDemo: "See demo",
+        pillInsurance: "Insurance",
+        howTitle: "How BaySulu works",
+        how1t: "1. Apply in minutes",
+        how1d: "Digital onboarding & KYC. Pre-check with XYD Bank API.",
+        how2t: "2. Landlord paid upfront",
+        how2d: "XYD Bank disburses full annual rent at contract start.",
+        how3t: "3. Pay monthly",
+        how3d: "12 installments. Insurance coverage for default and deposit.",
+        aiTitle: "Your AI rent assistant (GPT-5 Pro)",
+        aiDemo: "Demo conversation",
+        you: "You:",
+        q1: "Annual is AED 90,000. How much monthly?",
+        a1: "Estimated AED 7,500 / month × 12. Would you like a breakdown?",
+        q2: "Draft an email to the broker.",
+        a2: "Subject: Monthly Plan for Shield Tower… (draft attached).",
+        videoTitle: "Explain with video (Sora-2)",
+        videoNote: "“How BaySulu works” — 0:30 demo video.",
+        applyTitle: "Apply — Pay Monthly with BaySulu",
+        calcTitle: "Monthly Payment Estimator",
+        calcDesc: "Enter your annual rent (AED). We estimate a monthly plan (rounded nicely).",
+        estLabel: "Estimated",
+        phName: "Full name",
+        phEmail: "Email",
+        phPhone: "Phone (UAE)",
+        phProp: "Property / Listing URL",
+        phAnnual: "Annual Rent (AED)",
+        btnSubmit: "Submit Application",
+        legalNote: "By submitting you agree to Local low compliance & privacy terms.",
+        partnersTitle: "Trusted ecosystem",
+        partnersDesc: "Seamless rails with bank & insurance. Listing lead-flow from marketplaces.",
+        logoIns: "Insurance",
+        logoReg: "Local low compliance",
+        copyright: "© BaySulu — Fintech platform for flexible rent payments in the UAE."
+      },
+      ar: {
+        badge: "ثورة في مدفوعات الإيجار",
+        h1: "ادفع الإيجار <span style=\"color:#059669\">شهريًا</span>، ويحصل المالك على المبلغ <span style=\"color:#059669\">سنويًا مقدمًا</span>.",
+        lead: "باي سولو منصة فينتك في الإمارات لتحويل شيكات الإيجار السنوية إلى أقساط شهرية سلسة — بدعم من البنية المصرفية والتأمين. مدعوم بـ GPT-5 Pro · فيديو بواسطة Sora-2 · متوافق مع متطلبات الامتثال المحلية.",
+        ctaApply: "ابدأ الطلب",
+        ctaDemo: "مشاهدة العرض",
+        pillInsurance: "التأمين",
+        howTitle: "كيف تعمل BaySulu",
+        how1t: "١. تقديم الطلب خلال دقائق",
+        how1d: "تسجيل رقمي ومعرفة عميلك (KYC). فحص أولي عبر واجهات XYD Bank.",
+        how2t: "٢. دفع المبلغ السنوي للمالك",
+        how2d: "يقوم XYD Bank بصرف كامل الإيجار السنوي عند بدء العقد.",
+        how3t: "٣. الدفع شهريًا",
+        how3d: "١٢ قسطًا شهريًا. تغطية تأمينية للتعثر وبدل الضمان.",
+        aiTitle: "مساعد الإيجار الذكي (GPT-5 Pro)",
+        aiDemo: "محادثة تجريبية",
+        you: "أنت:",
+        q1: "الإيجار السنوي 90,000 درهم. كم سيكون شهريًا؟",
+        a1: "تقديرًا 7,500 درهم شهريًا × 12. هل ترغب في تفاصيل أكثر؟",
+        q2: "اكتب رسالة إلى الوسيط.",
+        a2: "الموضوع: خطة الدفع الشهري لبرج شيلد… (مسودة مرفقة).",
+        videoTitle: "اشرح بالفيديو (Sora-2)",
+        videoNote: "“كيف تعمل BaySulu” — فيديو تجريبي 0:30.",
+        applyTitle: "قدّم طلب — ادفع شهريًا مع BaySulu",
+        calcTitle: "حاسبة القسط الشهري",
+        calcDesc: "أدخل الإيجار السنوي (درهم). سنحسب خطة شهرية (بتقريب مناسب).",
+        estLabel: "التقدير",
+        phName: "الاسم الكامل",
+        phEmail: "البريد الإلكتروني",
+        phPhone: "الهاتف (الإمارات)",
+        phProp: "رابط العقار / الإعلان",
+        phAnnual: "الإيجار السنوي (درهم)",
+        btnSubmit: "إرسال الطلب",
+        legalNote: "بإرسال الطلب، فإنك توافق على متطلبات الامتثال والخصوصية المحلية.",
+        partnersTitle: "منظومة موثوقة",
+        partnersDesc: "تكامل سلس مع المصرف والتأمين. تدفق العملاء من منصات العقارات.",
+        logoIns: "التأمين",
+        logoReg: "امتثال محلي منخفض",
+        copyright: "© باي سولو — منصة فينتك للدفع المرن للإيجار في الإمارات."
+      }
+    };
+
+    const savedLang = localStorage.getItem('bay_lang') || 'en';
+    setLang(savedLang);
+
+    btn.addEventListener('click', function(){
+      const cur = localStorage.getItem('bay_lang') || 'en';
+      const nxt = cur === 'en' ? 'ar' : 'en';
+      setLang(nxt);
+    });
+
+    function setLang(lang){
+      const rtl = (lang === 'ar');
+      document.documentElement.lang = lang;
+      document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+      localStorage.setItem('bay_lang', lang);
+
+      // map text nodes
+      for (const [k,v] of Object.entries(T[lang])){
+        const node = document.querySelector(`[data-i="${k}"]`);
+        if(node){
+          node.innerHTML = v;
+        }
+      }
+      // placeholders
+      document.querySelectorAll('[data-i-ph]').forEach(el=>{
+        const key = el.getAttribute('data-i-ph');
+        el.setAttribute('placeholder', T[lang][key] || el.getAttribute('placeholder'));
+      });
+      // update theme/lang button labels optionally
+      btn.textContent = (lang==='ar' ? 'EN / AR' : 'AR / EN');
+    }
+  })();
+
+  // --- Calculator (annual -> monthly rounded to nearest 10) ---
+  (function(){
+    const annualInput = document.getElementById('annualInput');
+    const annualForm  = document.getElementById('annualForm');
+    const est1 = document.getElementById('est1');
+    const est2 = document.getElementById('est2');
+    function fmt(aed, lang){
+      const s = (lang==='ar') ? 'شهريًا × 12' : ' / month × 12';
+      return (lang==='ar')
+        ? `درهم ${aed.toLocaleString('en-US')} ${s}`
+        : `AED ${aed.toLocaleString('en-US')}${s}`;
+    }
+    function recalc(){
+      const a = Math.max(0, parseFloat(annualInput.value||'0'));
+      const m = Math.round((a/12)/10)*10 || 0;
+      const lang = localStorage.getItem('bay_lang') || 'en';
+      const text = fmt(m, lang);
+      if(est1) est1.textContent = (lang==='ar' ? `تقديرًا ${text}. هل ترغب في تفاصيل أكثر؟` : `Estimated ${text}. Would you like a breakdown?`);
+      if(est2) est2.textContent = text;
+      if(annualForm) annualForm.value = String(Math.round(a));
+    }
+    annualInput.addEventListener('input', recalc);
+    // recalc on language change too
+    window.addEventListener('storage', recalc);
+    recalc();
+  })();
+</script>
+
+</body>
+</html>
 
