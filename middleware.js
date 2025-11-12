@@ -1,4 +1,4 @@
-// middleware.js (корень репозитория)
+ // middleware.js (корень репозитория)
 import { NextResponse } from 'next/server';
 
 export const config = {
